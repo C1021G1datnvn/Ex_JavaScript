@@ -51,10 +51,10 @@ function isIncreasingNumberByDistance(number, x) {
     }
 
     for (let i = 1; i < numberString.length; i++) {
-        if (Math.abs(parseInt(numberString[i]) - parseInt(numberString[i - 1])) !== x) {
+        if (Math.abs(parseInt(numberString[i - 1]) - parseInt(numberString[i])) !== x) {
           return false;
         }
-      }
+    }
 
     return true;
 
@@ -147,8 +147,6 @@ function isSymetricNumber(number) {
 };
 
 console.log(isSymetricNumber(123321));
-
-// đang sai 
 
 
 // bài 8  Kiểm tra số có tổng chia hết cho 10
