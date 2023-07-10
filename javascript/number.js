@@ -192,3 +192,116 @@ function hasTwoDigitsWithSum(n,sum){
 
 console.log(hasTwoDigitsWithSum(101, 3));
 
+
+// bài toán atm
+
+function withdraw(amount) {
+    const K500_QUANTITY = 2;
+    const K200_QUANTITY = 5;
+    const K100_QUANTITY = 10;
+    const K50_QUANTITY = 100;
+    
+    const K500_VALUE = 500000;
+    const K200_VALUE = 200000;
+    const K100_VALUE = 100000;
+    const K50_VALUE = 50000;
+
+    const BASE_UNIT = 50000;
+    if (amount % BASE_UNIT !== 0) {
+      return 'Invalid balance';
+    }
+    
+    const result = { k500: 0, k200: 0, k100: 0, k50: 0 };
+  
+    while (amount > 0) {
+      if (amount >= K500_VALUE && result.k500 < K500_QUANTITY) {
+        amount -= K500_VALUE;
+        result.k500 += 1;
+      } else if (amount >= K200_VALUE && result.k200 < K200_QUANTITY) {
+        amount -= K200_VALUE;
+        result.k200 += 1;
+      } else if (amount >= K100_VALUE && result.k100 < K100_QUANTITY) {
+        amount -= K100_VALUE;
+        result.k100 += 1;
+      } else if (amount >= K50_VALUE && result.k50 < K50_QUANTITY) {
+        amount -= K50_VALUE;
+        result.k50 += 1;
+      } else {
+        return 'Insufficient balance from ATM';
+      }
+    }
+  
+    return result;
+  }
+
+  console.log(withdraw(850000));
+
+
+  // cách 2 
+
+  function withdraw2(amount) {
+    const K500_QUANTITY = 2;
+    const K200_QUANTITY = 5;
+    const K100_QUANTITY = 10;
+    const K50_QUANTITY = 100;
+    
+    const K500_VALUE = 500000;
+    const K200_VALUE = 200000;
+    const K100_VALUE = 100000;
+    const K50_VALUE = 50000;
+    const BASE_UNIT = 50000;
+
+    const TOTAL = 8000000;
+
+    if(amount % BASE_UNIT !== 0) {
+        return 'Invalid balance';
+    }
+
+    if(TOTAL < amount) {
+        return 'Insufficient balance from ATM';
+    }
+
+    const result = { k500: 0, k200: 0, k100: 0, k50: 0 };
+
+    let a = Math.floor(amount / K500_VALUE); // a = 1
+        if( K500_QUANTITY < a) {
+           return "Hết tiền rồi !";
+        }
+        result.k500 = a;
+    
+    let total_500 = K500_VALUE * a;
+
+    let cash_in_return_1 = amount - total_500;
+    
+    let b = Math.floor(cash_in_return_1 / K200_VALUE);
+        if( K200_QUANTITY < b) {
+            return "Hết tiền rồi !";
+        }
+        result.k200 = b;
+
+    let total_200 = K200_VALUE * b;
+
+    let cash_in_return_2 = cash_in_return_1 - total_200;
+
+    let c = Math.floor(cash_in_return_2 / K100_VALUE);
+
+        if( K100_QUANTITY < c) {
+            return "Hết tiền rồi !";
+        }
+        result.k100 = c;
+    
+    let total_100 = K100_VALUE * c;
+
+    let cash_in_return_3 = cash_in_return_2 - total_100;
+
+    let d = Math.floor(cash_in_return_3 / K50_VALUE);
+
+        if( K50_QUANTITY < d) {
+            return "Hết tiền rồi !";
+        }
+        result.k50 = d;
+
+    return result;
+  }
+
+  console.log(withdraw2(750000));
