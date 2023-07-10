@@ -263,9 +263,10 @@ function withdraw(amount) {
 
     const result = { k500: 0, k200: 0, k100: 0, k50: 0 };
 
-    let a = Math.floor(amount / K500_VALUE); // a = 1
+    let a = Math.floor(amount / K500_VALUE); // a = 15
+    console.log(a);
         if( K500_QUANTITY < a) {
-           return "Hết tiền rồi !";
+           a = K500_QUANTITY;
         }
         result.k500 = a;
     
@@ -274,8 +275,9 @@ function withdraw(amount) {
     let cash_in_return_1 = amount - total_500;
     
     let b = Math.floor(cash_in_return_1 / K200_VALUE);
+    console.log(b);
         if( K200_QUANTITY < b) {
-            return "Hết tiền rồi !";
+            b = K200_QUANTITY ;
         }
         result.k200 = b;
 
@@ -284,9 +286,9 @@ function withdraw(amount) {
     let cash_in_return_2 = cash_in_return_1 - total_200;
 
     let c = Math.floor(cash_in_return_2 / K100_VALUE);
-
+        console.log(c);
         if( K100_QUANTITY < c) {
-            return "Hết tiền rồi !";
+            c = K100_QUANTITY;
         }
         result.k100 = c;
     
@@ -295,13 +297,13 @@ function withdraw(amount) {
     let cash_in_return_3 = cash_in_return_2 - total_100;
 
     let d = Math.floor(cash_in_return_3 / K50_VALUE);
-
+        console.log(d);
         if( K50_QUANTITY < d) {
-            return "Hết tiền rồi !";
+            d = K50_QUANTITY;
         }
         result.k50 = d;
 
     return result;
   }
 
-  console.log(withdraw2(750000));
+  console.log(withdraw2(7500000));
